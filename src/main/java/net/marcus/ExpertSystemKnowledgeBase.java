@@ -53,7 +53,16 @@ public class ExpertSystemKnowledgeBase {
 	private Node load(InputStream inputStream) throws IOException {
 		Node node = new Node();
 		node.setNodeText(extractNodeText(inputStream));
+		if(thereAreSubtrees(inputStream)){
+			node.setNodeYes(load(inputStream));
+			node.setNodeNo(load(inputStream));
+		}
 		return node;
+	}
+
+	private boolean thereAreSubtrees(InputStream inputStream) throws IOException {
+		int nextVal = inputStream.read();
+		return nextVal > 0 && '[' == (char)nextVal;
 	}
 
 	private String extractNodeText(InputStream inputStream) throws IOException {
@@ -84,7 +93,6 @@ public class ExpertSystemKnowledgeBase {
 		CommonTokenStream tokens = new CommonTokenStream(lexEngine);
 		ParserInterpreter parser = g.createParserInterpreter(tokens);
 		parser.addErrorListener(new ANTLRErrorListener () {
-
 			@Override
 			public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
 					int charPositionInLine, String msg, org.antlr.v4.runtime.RecognitionException e) {

@@ -9,7 +9,6 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class ExpertSystemKnowledgeBaseTest {
@@ -59,7 +58,6 @@ public class ExpertSystemKnowledgeBaseTest {
 	}
 
 	@Test
-	@Ignore	
 	public void shouldReturnNodeAndTwoSubtrees() throws Exception {
 		try {
 			Node node = expertSystemKnowledgeBase.initialLoad("[\"node.text\":[\"YES.subnode.text\"],[\"NO.subnode.text\"]]");
