@@ -1,6 +1,9 @@
 package net.marcus;
 
+import java.io.IOException;
 import java.util.Scanner;
+
+import org.antlr.runtime.RecognitionException;
 
 public class ExpertSystem {
 	
@@ -9,10 +12,27 @@ public class ExpertSystem {
 	private static Node knowledgeBase = new Node("Oh no, the only thing I know is I don't know anything!");
 	private static enum Answer {YES, NO};
 	private static Scanner scanner = new Scanner(System.in);
+	private ExpertSystemKnowledgeBase knowledgeBaseLoader;
 	
-	public static void main(String args[]){
-		initialiseHardcodedKnowledgeBase();
-		interrogateKnowledgeBase();
+	public ExpertSystem() throws RecognitionException{
+		knowledgeBaseLoader = new ExpertSystemKnowledgeBase();
+	}
+	
+	private void solveProblem() throws IOException{
+		//XXX No longer needed but left for testing purposes		
+		//initialiseHardcodedKnowledgeBase();
+		
+		initialiseKnowledgeBase("[\"Is the car silent when you turn the key?\":[\"Are the battery terminals corroded?\":[\"Clean terminals and try starting again.\"],[\"Replace cables and try again.\"]],[\"Does the car make a clicking noise?\":[\"Replace the battery.\"],[\"Does the car crank up but fail to start?\":[\"Check spark plug connections.\"],[\"Does the engine start and then die?\":[\"Does your car have fuel injection?\":[\"Get it in for service.\"],[\"Check to ensure the choke is opening and closing.\"]],[\"EMPTY\"]]]]]");
+		interrogateKnowledgeBase();		
+	}
+	
+	public static void main(String args[]) throws RecognitionException, IOException{
+		ExpertSystem expertSystem = new ExpertSystem();
+		expertSystem.solveProblem();
+	}
+
+	private void initialiseKnowledgeBase(String tree) throws IOException {
+		knowledgeBase = knowledgeBaseLoader.initialLoad(tree);
 	}
 
 	private static void interrogateKnowledgeBase() {

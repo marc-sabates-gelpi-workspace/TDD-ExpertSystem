@@ -1,8 +1,9 @@
 package net.marcus;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ExpertSystemTest {
@@ -12,6 +13,7 @@ public class ExpertSystemTest {
 	}
 
 	@Test
+	@Ignore
 	public void test() {
 		
 		fail("Not yet implemented");
