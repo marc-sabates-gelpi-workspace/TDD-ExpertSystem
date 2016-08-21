@@ -6,6 +6,14 @@ public class Node {
 	private Node nodeYes = null;
 	private Node nodeNo = null;
 
+	public Node(String text) {
+		this.nodeText = text;
+	}
+
+	public Node() {
+		
+	}
+
 	public String getNodeText() {
 		return nodeText;
 	}
