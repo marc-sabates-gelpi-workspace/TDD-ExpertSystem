@@ -79,7 +79,10 @@ public class ExpertSystemKnowledgeBase {
 	}
 
 	private boolean notDelimCharacter(char character) {
-		return character != '[' && character != '"' && notEndOfNodeText(character);
+		return character != '['
+				&& character != '"'
+				&& character != ','
+				&& notEndOfNodeText(character);
 	}
 
 	private boolean notEndOfNodeText(char character) {

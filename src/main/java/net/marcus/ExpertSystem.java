@@ -60,8 +60,8 @@ public class ExpertSystem {
 		np.setNodeNo(n2);
 		knowledgeBase.setNodeYes(np);
 		
-		n1 = new Node("Check to ensure the choke is opening and closing.");
-		n2 = new Node("Get it in for service.");
+		n1 = new Node("Get it in for service.");
+		n2 = new Node("Check to ensure the choke is opening and closing.");
 		np = new Node("Does your car have fuel injection?");
 		np.setNodeYes(n1);
 		np.setNodeNo(n2);
